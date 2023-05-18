@@ -20,7 +20,6 @@ import (
 	"time"
 )
 
-//
 // Routes
 const (
 	BucketsRoot       = "/buckets"
@@ -28,13 +27,11 @@ const (
 	BucketContentRoot = BucketRoot + "/*" + Wildcard
 )
 
-//
 // BucketHandler handles bucket routes.
 type BucketHandler struct {
 	BucketOwner
 }
 
-//
 // AddRoutes adds routes.
 func (h BucketHandler) AddRoutes(e *gin.Engine) {
 	routeGroup := e.Group("/")
@@ -196,7 +193,6 @@ func (h BucketHandler) BucketDelete(ctx *gin.Context) {
 	h.bucketDelete(ctx, h.pk(ctx))
 }
 
-//
 // Bucket REST resource.
 type Bucket struct {
 	Resource
@@ -204,7 +200,6 @@ type Bucket struct {
 	Expiration *time.Time `json:"expiration,omitempty"`
 }
 
-//
 // With updates the resource with the model.
 func (r *Bucket) With(m *model.Bucket) {
 	r.Resource.With(&m.Model)
@@ -216,13 +211,15 @@ type BucketOwner struct {
 	BaseHandler
 }
 
-//
 // bucketGet reads bucket content.
 // When path is DIRECTORY:
-//    Accept=text/html return body is index.html.
-//    Else streams tarball.
+//
+//	Accept=text/html return body is index.html.
+//	Else streams tarball.
+//
 // When path is FILE:
-//    Streams FILE content.
+//
+//	Streams FILE content.
 func (h *BucketOwner) bucketGet(ctx *gin.Context, id uint) {
 	var err error
 	m := &model.Bucket{}
@@ -265,7 +262,6 @@ func (h *BucketOwner) bucketGet(ctx *gin.Context, id uint) {
 	}
 }
 
-//
 // bucketPut write a file to the bucket.
 // The `Directory` header determines how the uploaded file is to be handled.
 // When `Directory`=Expand, the file (TARBALL) is extracted into the bucket.
@@ -290,7 +286,6 @@ func (h *BucketOwner) bucketPut(ctx *gin.Context, id uint) {
 	h.Status(ctx, http.StatusNoContent)
 }
 
-//
 // bucketDelete content from the bucket.
 func (h *BucketOwner) bucketDelete(ctx *gin.Context, id uint) {
 	m := &model.Bucket{}
@@ -309,7 +304,6 @@ func (h *BucketOwner) bucketDelete(ctx *gin.Context, id uint) {
 	h.Status(ctx, http.StatusNoContent)
 }
 
-//
 // putDir write a directory into bucket.
 func (h *BucketOwner) putDir(ctx *gin.Context, output string) (err error) {
 	file, err := ctx.FormFile(FileField)
@@ -379,7 +373,6 @@ func (h *BucketOwner) putDir(ctx *gin.Context, output string) (err error) {
 	return
 }
 
-//
 // getDir reads a directory from the bucket.
 func (h *BucketOwner) getDir(ctx *gin.Context, input string, filter DirFilter) (err error) {
 	var tarOutput bytes.Buffer
@@ -453,7 +446,6 @@ func (h *BucketOwner) getDir(ctx *gin.Context, input string, filter DirFilter) (
 	return
 }
 
-//
 // getFile reads a file from the bucket.
 func (h *BucketOwner) getFile(ctx *gin.Context, m *model.Bucket) (err error) {
 	rPath := ctx.Param(Wildcard)
@@ -462,7 +454,6 @@ func (h *BucketOwner) getFile(ctx *gin.Context, m *model.Bucket) (err error) {
 	return
 }
 
-//
 // putFile writes a file to the bucket.
 func (h *BucketOwner) putFile(ctx *gin.Context, m *model.Bucket) (err error) {
 	path := pathlib.Join(m.Path, ctx.Param(Wildcard))
@@ -497,7 +488,6 @@ func (h *BucketOwner) putFile(ctx *gin.Context, m *model.Bucket) (err error) {
 	return
 }
 
-//
 // DirFilter supports glob-style filtering.
 type DirFilter struct {
 	root    string
@@ -505,7 +495,6 @@ type DirFilter struct {
 	cache   map[string]bool
 }
 
-//
 // Match determines if path matches the filter.
 func (r *DirFilter) Match(path string) (b bool) {
 	if r.pattern == "" {

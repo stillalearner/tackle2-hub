@@ -16,7 +16,6 @@ type TaskGroup struct {
 	State string
 }
 
-//
 // Propagate group data into the task.
 func (m *TaskGroup) Propagate() (err error) {
 	for i := range m.Tasks {
@@ -53,7 +52,6 @@ func (m *TaskGroup) Propagate() (err error) {
 	return
 }
 
-//
 // merge maps B into A.
 // The B map is the authority.
 func (m *TaskGroup) merge(a, b Map) (out Map) {

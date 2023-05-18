@@ -11,7 +11,6 @@ const (
 	QueryParam = "filter"
 )
 
-//
 // New filter.
 func New(ctx *gin.Context, assertions []Assert) (f Filter, err error) {
 	p := Parser{}
@@ -26,13 +25,11 @@ func New(ctx *gin.Context, assertions []Assert) (f Filter, err error) {
 	return
 }
 
-//
 // Filter is a collection of predicates.
 type Filter struct {
 	predicates []Predicate
 }
 
-//
 // Validate -
 func (f *Filter) Validate(assertions []Assert) (err error) {
 	if len(assertions) == 0 {
@@ -65,7 +62,6 @@ func (f *Filter) Validate(assertions []Assert) (err error) {
 	return
 }
 
-//
 // Field returns a field.
 func (f *Filter) Field(name string) (field Field, found bool) {
 	fields := f.Fields(name)
@@ -76,7 +72,6 @@ func (f *Filter) Field(name string) (field Field, found bool) {
 	return
 }
 
-//
 // Fields returns fields.
 func (f *Filter) Fields(name string) (fields []Field) {
 	name = strings.ToLower(name)
@@ -89,7 +84,6 @@ func (f *Filter) Fields(name string) (fields []Field) {
 	return
 }
 
-//
 // Resource returns a filter scoped to resource.
 func (f *Filter) Resource(r string) (filter Filter) {
 	r = strings.ToLower(r)
@@ -107,7 +101,6 @@ func (f *Filter) Resource(r string) (filter Filter) {
 	return
 }
 
-//
 // Where applies (root) fields to the where clause.
 func (f *Filter) Where(in *gorm.DB) (out *gorm.DB) {
 	out = in
@@ -121,26 +114,22 @@ func (f *Filter) Where(in *gorm.DB) (out *gorm.DB) {
 	return
 }
 
-//
 // Empty returns true when the filter has no predicates.
 func (f *Filter) Empty() bool {
 	return len(f.predicates) == 0
 }
 
-//
 // Field predicate.
 type Field struct {
 	Predicate
 }
 
-//
 // Name returns the field name.
 func (f *Field) Name() (s string) {
 	_, s = f.split()
 	return
 }
 
-//
 // As returns the renamed field.
 func (f *Field) As(s string) (named Field) {
 	named = Field{f.Predicate}
@@ -148,14 +137,12 @@ func (f *Field) As(s string) (named Field) {
 	return
 }
 
-//
 // Resource returns the field resource.
 func (f *Field) Resource() (s string) {
 	s, _ = f.split()
 	return
 }
 
-//
 // SQL builds SQL.
 // Returns statement and value (for ?).
 func (f *Field) SQL() (s string, v interface{}) {
@@ -206,7 +193,6 @@ func (f *Field) SQL() (s string, v interface{}) {
 	return
 }
 
-//
 // split field name.
 // format: resource.name
 // The resource may be "" (anonymous).
@@ -222,7 +208,6 @@ func (f *Field) split() (relation string, name string) {
 	return
 }
 
-//
 // operator returns SQL operator.
 func (f *Field) operator() (s string) {
 	switch len(f.Value) {
@@ -241,7 +226,6 @@ func (f *Field) operator() (s string) {
 	return
 }
 
-//
 // Assert -
 type Assert struct {
 	Field    string
@@ -249,7 +233,6 @@ type Assert struct {
 	Relation bool
 }
 
-//
 // assert validation.
 func (r *Assert) assert(p *Predicate) (err error) {
 	name := p.Field.Value
@@ -270,7 +253,6 @@ func (r *Assert) assert(p *Predicate) (err error) {
 	return
 }
 
-//
 // AsValue returns the real value.
 func AsValue(t Token) (object interface{}) {
 	v := t.Value

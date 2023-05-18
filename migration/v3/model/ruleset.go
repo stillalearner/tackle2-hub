@@ -1,6 +1,5 @@
 package model
 
-//
 // RuleSet - Analysis ruleset.
 type RuleSet struct {
 	Model

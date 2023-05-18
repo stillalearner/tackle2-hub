@@ -14,6 +14,7 @@ require (
 	github.com/mattn/go-sqlite3 v1.14.16
 	github.com/onsi/gomega v1.27.6
 	github.com/prometheus/client_golang v1.15.0
+	github.com/smartystreets/goconvey v1.8.0
 	github.com/swaggo/swag v1.16.1
 	golang.org/x/sys v0.7.0
 	gopkg.in/yaml.v3 v3.0.1
@@ -55,11 +56,13 @@ require (
 	github.com/google/go-cmp v0.5.9 // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
 	github.com/google/gofuzz v1.1.0 // indirect
+	github.com/gopherjs/gopherjs v1.17.2 // indirect
 	github.com/imdario/mergo v0.3.12 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
+	github.com/jtolds/gls v4.20.0+incompatible // indirect
 	github.com/klauspost/cpuid/v2 v2.0.9 // indirect
 	github.com/leodido/go-urn v1.2.3 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
@@ -77,6 +80,7 @@ require (
 	github.com/rogpeppe/go-internal v1.10.0 // indirect
 	github.com/segmentio/ksuid v1.0.4 // indirect
 	github.com/sirupsen/logrus v1.9.0 // indirect
+	github.com/smartystreets/assertions v1.13.1 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/trivago/tgo v1.0.7 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect

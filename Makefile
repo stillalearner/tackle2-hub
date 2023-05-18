@@ -125,6 +125,8 @@ endif
 test:
 	go test -count=1 -v ./auth/
 
+goconvey-tests:
+	goconvey -host localhost -port 8088 -env HUB_BASE_URL=${HUB_BASE_URL} -verbose
 # Run Hub REST API tests.
 test-api:
 	HUB_BASE_URL=${HUB_BASE_URL} go test -count=1 -v ./test/api/...

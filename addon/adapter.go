@@ -16,7 +16,6 @@ var (
 	Log      = logr.WithName("addon")
 )
 
-//
 // Addon An addon adapter configured for a task execution.
 var Addon *Adapter
 
@@ -30,7 +29,6 @@ func init() {
 	Addon = newAdapter()
 }
 
-//
 // The Adapter provides hub/addon integration.
 type Adapter struct {
 	// Task API.
@@ -55,12 +53,11 @@ type Adapter struct {
 	client *Client
 }
 
-//
 // Run addon.
 // Reports:
-//  - Started
-//  - Succeeded
-//  - Failed (when addon returns error).
+//   - Started
+//   - Succeeded
+//   - Failed (when addon returns error).
 func (h *Adapter) Run(addon func() error) {
 	var err error
 	//
@@ -98,13 +95,11 @@ func (h *Adapter) Run(addon func() error) {
 	h.Succeeded()
 }
 
-//
 // Client provides the REST client.
 func (h *Adapter) Client() *Client {
 	return h.client
 }
 
-//
 // newAdapter builds a new Addon Adapter object.
 func newAdapter() (adapter *Adapter) {
 	//

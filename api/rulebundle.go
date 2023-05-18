@@ -8,14 +8,12 @@ import (
 	"net/http"
 )
 
-//
 // Routes
 const (
 	RuleBundlesRoot = "/rulebundles"
 	RuleBundleRoot  = RuleBundlesRoot + "/:" + ID
 )
 
-//
 // RuleBundleHandler handles bundle resource routes.
 type RuleBundleHandler struct {
 	BaseHandler
@@ -213,7 +211,6 @@ func (h RuleBundleHandler) Update(ctx *gin.Context) {
 	h.Status(ctx, http.StatusNoContent)
 }
 
-//
 // RuleBundle REST resource.
 type RuleBundle struct {
 	Resource
@@ -227,7 +224,6 @@ type RuleBundle struct {
 	Identity    *Ref        `json:"identity,omitempty"`
 }
 
-//
 // With updates the resource with the model.
 func (r *RuleBundle) With(m *model.RuleBundle) {
 	r.Resource.With(&m.Model)
@@ -252,7 +248,6 @@ func (r *RuleBundle) With(m *model.RuleBundle) {
 	}
 }
 
-//
 // Model builds a model.
 func (r *RuleBundle) Model() (m *model.RuleBundle) {
 	m = &model.RuleBundle{
@@ -274,7 +269,6 @@ func (r *RuleBundle) Model() (m *model.RuleBundle) {
 	return
 }
 
-//
 // HasRuleSet - determine if the ruleset is referenced.
 func (r *RuleBundle) HasRuleSet(id uint) (b bool) {
 	for _, ruleset := range r.RuleSets {
@@ -286,7 +280,6 @@ func (r *RuleBundle) HasRuleSet(id uint) (b bool) {
 	return
 }
 
-//
 // RuleSet - REST Resource.
 type RuleSet struct {
 	Resource
@@ -296,7 +289,6 @@ type RuleSet struct {
 	File        *Ref        `json:"file,omitempty"`
 }
 
-//
 // With updates the resource with the model.
 func (r *RuleSet) With(m *model.RuleSet) {
 	r.Resource.With(&m.Model)
@@ -305,7 +297,6 @@ func (r *RuleSet) With(m *model.RuleSet) {
 	r.File = r.refPtr(m.FileID, m.File)
 }
 
-//
 // Model builds a model.
 func (r *RuleSet) Model() (m *model.RuleSet) {
 	m = &model.RuleSet{}

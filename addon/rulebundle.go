@@ -2,14 +2,12 @@ package addon
 
 import "github.com/konveyor/tackle2-hub/api"
 
-//
 // RuleBundle API.
 type RuleBundle struct {
 	// hub API client.
 	client *Client
 }
 
-//
 // Get a bundle by ID.
 func (h *RuleBundle) Get(id uint) (r *api.RuleBundle, err error) {
 	r = &api.RuleBundle{}
@@ -18,7 +16,6 @@ func (h *RuleBundle) Get(id uint) (r *api.RuleBundle, err error) {
 	return
 }
 
-//
 // List bundles.
 func (h *RuleBundle) List() (list []api.RuleBundle, err error) {
 	list = []api.RuleBundle{}
@@ -29,7 +26,6 @@ func (h *RuleBundle) List() (list []api.RuleBundle, err error) {
 	return
 }
 
-//
 // Update a bundle by ID.
 func (h *RuleBundle) Update(r *api.RuleBundle) (err error) {
 	path := Path(api.RuleBundleRoot).Inject(Params{api.ID: r.ID})
@@ -37,7 +33,6 @@ func (h *RuleBundle) Update(r *api.RuleBundle) (err error) {
 	return
 }
 
-//
 // Delete a bundle.
 func (h *RuleBundle) Delete(id uint) (err error) {
 	path := Path(api.RuleBundleRoot).Inject(Params{api.ID: id})

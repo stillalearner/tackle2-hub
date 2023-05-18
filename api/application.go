@@ -10,7 +10,6 @@ import (
 	"net/http"
 )
 
-//
 // Routes
 const (
 	ApplicationsRoot     = "/applications"
@@ -24,19 +23,16 @@ const (
 	AppStakeholdersRoot  = ApplicationRoot + "/stakeholders"
 )
 
-//
 // Params
 const (
 	Source = "source"
 )
 
-//
 // ApplicationHandler handles application resource routes.
 type ApplicationHandler struct {
 	BucketOwner
 }
 
-//
 // AddRoutes adds routes.
 func (h ApplicationHandler) AddRoutes(e *gin.Engine) {
 	routeGroup := e.Group("/")
@@ -859,7 +855,6 @@ func (h ApplicationHandler) StakeholdersUpdate(ctx *gin.Context) {
 	h.Status(ctx, http.StatusNoContent)
 }
 
-//
 // Application REST resource.
 type Application struct {
 	Resource
@@ -878,7 +873,6 @@ type Application struct {
 	MigrationWave   *Ref        `json:"migrationWave"`
 }
 
-//
 // With updates the resource using the model.
 func (r *Application) With(m *model.Application, tags []model.ApplicationTag) {
 	r.Resource.With(&m.Model)
@@ -919,7 +913,6 @@ func (r *Application) With(m *model.Application, tags []model.ApplicationTag) {
 	r.MigrationWave = r.refPtr(m.MigrationWaveID, m.MigrationWave)
 }
 
-//
 // Model builds a model.
 func (r *Application) Model() (m *model.Application) {
 	m = &model.Application{
@@ -972,7 +965,6 @@ func (r *Application) Model() (m *model.Application) {
 	return
 }
 
-//
 // Repository REST nested resource.
 type Repository struct {
 	Kind   string `json:"kind"`
@@ -982,7 +974,6 @@ type Repository struct {
 	Path   string `json:"path"`
 }
 
-//
 // Fact REST nested resource.
 type Fact struct {
 	Key    string      `json:"key"`
@@ -1004,7 +995,6 @@ func (r *Fact) Model() (m *model.Fact) {
 	return
 }
 
-//
 // Stakeholders REST subresource.
 type Stakeholders struct {
 	Owner        *Ref  `json:"owner"`

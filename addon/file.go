@@ -5,14 +5,12 @@ import (
 	pathlib "path"
 )
 
-//
 // File API.
 type File struct {
 	// hub API client.
 	client *Client
 }
 
-//
 // Get downloads a file.
 func (h *File) Get(id uint, destination string) (err error) {
 	path := Path(api.FileRoot).Inject(Params{api.ID: id})
@@ -34,7 +32,6 @@ func (h *File) Get(id uint, destination string) (err error) {
 	return
 }
 
-//
 // Put uploads a file.
 func (h *File) Put(source string) (r *api.File, err error) {
 	r = &api.File{}
@@ -43,7 +40,6 @@ func (h *File) Put(source string) (r *api.File, err error) {
 	return
 }
 
-//
 // Delete a file.
 func (h *File) Delete(id uint) (err error) {
 	path := Path(api.FileRoot).Inject(Params{api.ID: id})

@@ -2,7 +2,6 @@ name: Build Hub
 
 on:
   pull_request:
-    branches: [ "main" ]
     paths-ignore:
       - '**.md'
 
@@ -58,6 +57,22 @@ jobs:
           DISCONNECTED=1 make run &
           sleep 15  # probably a dirty solution
           HUB_BASE_URL=http://localhost:8080 make test-api
+
+  goconvey-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '1.19'
+      - run: |
+          go get github.com/smartystreets/goconvey
+          go mod download
+          go mod tidy
+          make vet
+          DISCONNECTED=1 make run &
+          sleep 15  # probably a dirty solution
+          HUB_BASE_URL=http://localhost:8080 make goconvey-tests
 
   test-e2e:
     runs-on: ubuntu-latest

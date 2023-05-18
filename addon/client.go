@@ -28,22 +28,18 @@ const (
 	RetryDelay = time.Second * 10
 )
 
-//
 // Param.
 type Param struct {
 	Key   string
 	Value string
 }
 
-//
 // Params mapping.
 type Params map[string]interface{}
 
-//
 // Path API path.
 type Path string
 
-//
 // Inject named parameters.
 func (s Path) Inject(p Params) (out string) {
 	in := strings.Split(string(s), "/")
@@ -60,7 +56,6 @@ func (s Path) Inject(p Params) (out string) {
 	return
 }
 
-//
 // NewClient Constructs a new client
 func NewClient(url, token string) (client *Client) {
 	client = &Client{
@@ -71,7 +66,6 @@ func NewClient(url, token string) (client *Client) {
 	return
 }
 
-//
 // Client provides a REST client.
 type Client struct {
 	// baseURL for the nub.
@@ -86,19 +80,16 @@ type Client struct {
 	Error error
 }
 
-//
 // SetToken sets hub token on client
 func (r *Client) SetToken(token string) {
 	r.token = token
 }
 
-//
 // Reset the client.
 func (r *Client) Reset() {
 	r.Error = nil
 }
 
-//
 // Get a resource.
 func (r *Client) Get(path string, object interface{}, params ...Param) (err error) {
 	request := func() (request *http.Request, err error) {
@@ -147,7 +138,6 @@ func (r *Client) Get(path string, object interface{}, params ...Param) (err erro
 	return
 }
 
-//
 // Post a resource.
 func (r *Client) Post(path string, object interface{}) (err error) {
 	request := func() (request *http.Request, err error) {
@@ -194,7 +184,6 @@ func (r *Client) Post(path string, object interface{}) (err error) {
 	return
 }
 
-//
 // Put a resource.
 func (r *Client) Put(path string, object interface{}, params ...Param) (err error) {
 	request := func() (request *http.Request, err error) {
@@ -249,7 +238,6 @@ func (r *Client) Put(path string, object interface{}, params ...Param) (err erro
 	return
 }
 
-//
 // Delete a resource.
 func (r *Client) Delete(path string, params ...Param) (err error) {
 	request := func() (request *http.Request, err error) {
@@ -288,7 +276,6 @@ func (r *Client) Delete(path string, params ...Param) (err error) {
 	return
 }
 
-//
 // BucketGet downloads a file/directory.
 // The source (path) is relative to the bucket root.
 func (r *Client) BucketGet(source, destination string) (err error) {
@@ -326,7 +313,6 @@ func (r *Client) BucketGet(source, destination string) (err error) {
 	return
 }
 
-//
 // BucketPut uploads a file/directory.
 // The destination (path) is relative to the bucket root.
 func (r *Client) BucketPut(source, destination string) (err error) {
@@ -381,7 +367,6 @@ func (r *Client) BucketPut(source, destination string) (err error) {
 	return
 }
 
-//
 // FileGet downloads a file.
 func (r *Client) FileGet(path, destination string) (err error) {
 	request := func() (request *http.Request, err error) {
@@ -414,7 +399,6 @@ func (r *Client) FileGet(path, destination string) (err error) {
 	return
 }
 
-//
 // FilePut uploads a file.
 // Returns the created File resource.
 func (r *Client) FilePut(path, source string, object interface{}) (err error) {
@@ -477,7 +461,6 @@ func (r *Client) FilePut(path, source string, object interface{}) (err error) {
 	return
 }
 
-//
 // getDir downloads and expands a directory.
 func (r *Client) getDir(body io.Reader, output string) (err error) {
 	zipReader, err := gzip.NewReader(body)
@@ -521,7 +504,6 @@ func (r *Client) getDir(body io.Reader, output string) (err error) {
 	return
 }
 
-//
 // putDir archive and uploads a directory.
 func (r *Client) putDir(writer io.Writer, input string) (err error) {
 	var tarOutput bytes.Buffer
@@ -583,7 +565,6 @@ func (r *Client) putDir(writer io.Writer, input string) (err error) {
 	return
 }
 
-//
 // getFile downloads plain file.
 func (r *Client) getFile(body io.Reader, path, output string) (err error) {
 	isDir, err := r.isDir(output, false)
@@ -607,7 +588,6 @@ func (r *Client) getFile(body io.Reader, path, output string) (err error) {
 	return
 }
 
-//
 // putFile uploads plain file.
 func (r *Client) putFile(writer io.Writer, input string) (err error) {
 	file, err := os.Open(input)
@@ -622,7 +602,6 @@ func (r *Client) putFile(writer io.Writer, input string) (err error) {
 	return
 }
 
-//
 // isDir determines if the path is a directory.
 // The `must` specifies if the path must exist.
 func (r *Client) isDir(path string, must bool) (b bool, err error) {
@@ -643,7 +622,6 @@ func (r *Client) isDir(path string, must bool) (b bool, err error) {
 	return
 }
 
-//
 // Send the request.
 // Resilient against transient hub availability.
 func (r *Client) send(rb func() (*http.Request, error)) (response *http.Response, err error) {
@@ -693,7 +671,6 @@ func (r *Client) send(rb func() (*http.Request, error)) (response *http.Response
 	return
 }
 
-//
 // buildTransport builds transport.
 func (r *Client) buildTransport() (err error) {
 	if r.transport != nil {
@@ -713,7 +690,6 @@ func (r *Client) buildTransport() (err error) {
 	return
 }
 
-//
 // Join the URL.
 func (r *Client) join(path string) (parsedURL *url.URL) {
 	parsedURL, _ = url.Parse(r.baseURL)

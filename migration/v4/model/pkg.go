@@ -9,11 +9,9 @@ var (
 	Settings = &settings.Settings
 )
 
-//
 // JSON field (data) type.
 type JSON = []byte
 
-//
 // Unchanged models imported from previous migration.
 type Model = v3.Model
 type Bucket = v3.Bucket
@@ -36,11 +34,9 @@ type TaskGroup = v3.TaskGroup
 type TaskReport = v3.TaskReport
 type TTL = v3.TTL
 
-//
 // Errors
 type DependencyCyclicError = v3.DependencyCyclicError
 
-//
 // All builds all models.
 // Models are enumerated such that each are listed after
 // all the other models on which they may depend.

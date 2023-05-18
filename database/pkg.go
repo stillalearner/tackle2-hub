@@ -22,7 +22,6 @@ const (
 	FKsOff           = "&_foreign_keys=no"
 )
 
-//
 // Open and automigrate the DB.
 func Open(enforceFKs bool) (db *gorm.DB, err error) {
 	connStr := fmt.Sprintf(ConnectionString, Settings.DB.Path)
@@ -58,7 +57,6 @@ func Open(enforceFKs bool) (db *gorm.DB, err error) {
 	return
 }
 
-//
 // Close the DB.
 func Close(db *gorm.DB) (err error) {
 	var sqlDB *sql.DB
