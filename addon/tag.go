@@ -4,14 +4,12 @@ import (
 	"github.com/konveyor/tackle2-hub/api"
 )
 
-//
 // Tag API.
 type Tag struct {
 	// hub API client.
 	client *Client
 }
 
-//
 // Create a tag.
 func (h *Tag) Create(r *api.Tag) (err error) {
 	err = h.client.Post(api.TagsRoot, r)
@@ -24,7 +22,6 @@ func (h *Tag) Create(r *api.Tag) (err error) {
 	return
 }
 
-//
 // Get a tag by ID.
 func (h *Tag) Get(id uint) (r *api.Tag, err error) {
 	r = &api.Tag{}
@@ -33,7 +30,6 @@ func (h *Tag) Get(id uint) (r *api.Tag, err error) {
 	return
 }
 
-//
 // List tags.
 func (h *Tag) List() (list []api.Tag, err error) {
 	list = []api.Tag{}
@@ -41,7 +37,6 @@ func (h *Tag) List() (list []api.Tag, err error) {
 	return
 }
 
-//
 // Delete a tag.
 func (h *Tag) Delete(r *api.Tag) (err error) {
 	path := Path(api.TagRoot).Inject(Params{api.ID: r.ID})
@@ -55,7 +50,6 @@ func (h *Tag) Delete(r *api.Tag) (err error) {
 	return
 }
 
-//
 // Find by name and type.
 func (h *Tag) Find(name string, category uint) (r *api.Tag, found bool, err error) {
 	list := []api.Tag{}
@@ -71,7 +65,6 @@ func (h *Tag) Find(name string, category uint) (r *api.Tag, found bool, err erro
 	return
 }
 
-//
 // Ensure a tag exists.
 func (h *Tag) Ensure(wanted *api.Tag) (err error) {
 	tag, found, err := h.Find(wanted.Name, wanted.Category.ID)
@@ -86,14 +79,12 @@ func (h *Tag) Ensure(wanted *api.Tag) (err error) {
 	return
 }
 
-//
 // TagCategory API.
 type TagCategory struct {
 	// hub API client.
 	client *Client
 }
 
-//
 // Create a tag-type.
 func (h *TagCategory) Create(m *api.TagCategory) (err error) {
 	err = h.client.Post(api.TagCategoriesRoot, m)
@@ -106,7 +97,6 @@ func (h *TagCategory) Create(m *api.TagCategory) (err error) {
 	return
 }
 
-//
 // Get a tag-type by ID.
 func (h *TagCategory) Get(id uint) (r *api.TagCategory, err error) {
 	r = &api.TagCategory{}
@@ -115,7 +105,6 @@ func (h *TagCategory) Get(id uint) (r *api.TagCategory, err error) {
 	return
 }
 
-//
 // List tag-types.
 func (h *TagCategory) List() (list []api.TagCategory, err error) {
 	list = []api.TagCategory{}
@@ -123,7 +112,6 @@ func (h *TagCategory) List() (list []api.TagCategory, err error) {
 	return
 }
 
-//
 // Delete a tag-type.
 func (h *TagCategory) Delete(r *api.TagCategory) (err error) {
 	path := Path(api.TagCategoryRoot).Inject(Params{api.ID: r.ID})
@@ -137,7 +125,6 @@ func (h *TagCategory) Delete(r *api.TagCategory) (err error) {
 	return
 }
 
-//
 // Find by name.
 func (h *TagCategory) Find(name string) (r *api.TagCategory, found bool, err error) {
 	list := []api.TagCategory{}
@@ -152,7 +139,6 @@ func (h *TagCategory) Find(name string) (r *api.TagCategory, found bool, err err
 	return
 }
 
-//
 // Ensure a tag-type exists.
 func (h *TagCategory) Ensure(wanted *api.TagCategory) (err error) {
 	tp, found, err := h.Find(wanted.Name)

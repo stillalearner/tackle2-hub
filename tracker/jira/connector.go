@@ -13,7 +13,6 @@ import (
 	"time"
 )
 
-//
 // Ticket status
 const (
 	New        = "New"
@@ -22,20 +21,17 @@ const (
 	Unknown    = "Unknown"
 )
 
-//
 // Connector for the Jira API
 type Connector struct {
 	tracker *model.Tracker
 }
 
-//
 // With updates the connector with the Tracker model.
 func (r *Connector) With(t *model.Tracker) {
 	r.tracker = t
 	_ = r.tracker.Identity.Decrypt()
 }
 
-//
 // Create the ticket in Jira.
 func (r *Connector) Create(t *model.Ticket) (err error) {
 	client, err := r.client()
@@ -70,7 +66,6 @@ func (r *Connector) Create(t *model.Ticket) (err error) {
 	return
 }
 
-//
 // RefreshAll retrieves fresh status information for all the tracker's tickets.
 func (r *Connector) RefreshAll() (tickets map[*model.Ticket]bool, err error) {
 	client, err := r.client()
@@ -121,7 +116,6 @@ func (r *Connector) RefreshAll() (tickets map[*model.Ticket]bool, err error) {
 	return
 }
 
-//
 // GetMetadata returns a simplified version of the project and issue type
 // metadata from the Jira API.
 func (r *Connector) GetMetadata() (metadata model.Metadata, err error) {
@@ -147,7 +141,6 @@ func (r *Connector) GetMetadata() (metadata model.Metadata, err error) {
 	return
 }
 
-//
 // client builds a Jira API client for the tracker.
 func (r *Connector) client() (client *jira.Client, err error) {
 	transport := http.DefaultTransport.(*http.Transport).Clone()
@@ -167,7 +160,6 @@ func (r *Connector) client() (client *jira.Client, err error) {
 	return
 }
 
-//
 // TestConnection to Jira Cloud.
 func (r *Connector) TestConnection() (connected bool, err error) {
 	client, err := r.client()
@@ -185,7 +177,6 @@ func (r *Connector) TestConnection() (connected bool, err error) {
 	return
 }
 
-//
 // status returns a normalized status based on the issue status category.
 func status(issue *jira.Issue) (s string) {
 	key := ""
@@ -206,7 +197,6 @@ func status(issue *jira.Issue) (s string) {
 	return
 }
 
-//
 // handleJiraError simplifies dealing with errors from the Jira API.
 func handleJiraError(response *jira.Response, in error) (out error) {
 	if in == nil {

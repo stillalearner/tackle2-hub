@@ -45,11 +45,9 @@ func (m *Task) BeforeCreate(db *gorm.DB) (err error) {
 	return
 }
 
-//
 // Map alias.
 type Map = map[string]interface{}
 
-//
 // TTL time-to-live.
 type TTL struct {
 	Created   int `json:"created,omitempty"`

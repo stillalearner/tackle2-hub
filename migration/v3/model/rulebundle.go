@@ -1,6 +1,5 @@
 package model
 
-//
 // RuleBundle - Analysis rules.
 type RuleBundle struct {
 	Model

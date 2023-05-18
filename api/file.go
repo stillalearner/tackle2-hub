@@ -11,20 +11,17 @@ import (
 	"time"
 )
 
-//
 // Routes
 const (
 	FilesRoot = "/files"
 	FileRoot  = FilesRoot + "/:" + ID
 )
 
-//
 // FileHandler handles file routes.
 type FileHandler struct {
 	BaseHandler
 }
 
-//
 // AddRoutes adds routes.
 func (h FileHandler) AddRoutes(e *gin.Engine) {
 	routeGroup := e.Group("/")
@@ -179,7 +176,6 @@ func (h FileHandler) Delete(ctx *gin.Context) {
 	h.Status(ctx, http.StatusNoContent)
 }
 
-//
 // File REST resource.
 type File struct {
 	Resource
@@ -188,7 +184,6 @@ type File struct {
 	Expiration *time.Time `json:"expiration,omitempty"`
 }
 
-//
 // With updates the resource with the model.
 func (r *File) With(m *model.File) {
 	r.Resource.With(&m.Model)

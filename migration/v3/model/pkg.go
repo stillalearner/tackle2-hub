@@ -9,11 +9,9 @@ var (
 	Settings = &settings.Settings
 )
 
-//
 // JSON field (data) type.
 type JSON = []byte
 
-//
 // Unchanged models imported from previous migration.
 type Model = v2.Model
 type BusinessService = v2.BusinessService
@@ -28,11 +26,9 @@ type StakeholderGroup = v2.StakeholderGroup
 type TagType = v2.TagType
 type TaskReport = v2.TaskReport
 
-//
 // Errors
 type DependencyCyclicError = v2.DependencyCyclicError
 
-//
 // All builds all models.
 // Models are enumerated such that each are listed after
 // all the other models on which they may depend.

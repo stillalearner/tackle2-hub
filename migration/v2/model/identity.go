@@ -5,7 +5,6 @@ import (
 	"github.com/konveyor/tackle2-hub/encryption"
 )
 
-//
 // Identity represents and identity with a set of credentials.
 type Identity struct {
 	Model
@@ -19,7 +18,6 @@ type Identity struct {
 	Proxies     []Proxy `gorm:"constraint:OnDelete:SET NULL"`
 }
 
-//
 // Encrypt sensitive fields.
 // The ref identity is used to determine when sensitive fields
 // have changed and need to be (re)encrypted.
@@ -56,7 +54,6 @@ func (r *Identity) Encrypt(ref *Identity) (err error) {
 	return
 }
 
-//
 // Decrypt sensitive fields.
 func (r *Identity) Decrypt() (err error) {
 	passphrase := Settings.Encryption.Passphrase

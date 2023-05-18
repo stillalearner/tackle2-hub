@@ -5,11 +5,9 @@ import (
 	"gorm.io/datatypes"
 )
 
-//
 // Field (data) types.
 type JSON = datatypes.JSON
 
-//
 // Models
 type Model = model.Model
 type Application = model.Application
@@ -46,16 +44,13 @@ type TaskReport = model.TaskReport
 type Ticket = model.Ticket
 type Tracker = model.Tracker
 
-//
 type TTL = model.TTL
 type Metadata = model.Metadata
 type Project = model.Project
 type IssueType = model.IssueType
 
-//
 // Join tables
 type ApplicationTag = model.ApplicationTag
 
-//
 // Errors
 type DependencyCyclicError = model.DependencyCyclicError

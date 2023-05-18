@@ -7,7 +7,6 @@ import (
 	"net/http"
 )
 
-//
 // Routes
 const (
 	ReviewsRoot = "/reviews"
@@ -15,13 +14,11 @@ const (
 	CopyRoot    = ReviewsRoot + "/copy"
 )
 
-//
 // ReviewHandler handles review routes.
 type ReviewHandler struct {
 	BaseHandler
 }
 
-//
 // AddRoutes adds routes.
 func (h ReviewHandler) AddRoutes(e *gin.Engine) {
 	routeGroup := e.Group("/")
@@ -220,7 +217,6 @@ func (h ReviewHandler) CopyReview(ctx *gin.Context) {
 	h.Status(ctx, http.StatusNoContent)
 }
 
-//
 // Review REST resource.
 type Review struct {
 	Resource
@@ -243,7 +239,6 @@ func (r *Review) With(m *model.Review) {
 	r.Application = r.ref(m.ApplicationID, m.Application)
 }
 
-//
 // Model builds a model.
 func (r *Review) Model() (m *model.Review) {
 	m = &model.Review{
@@ -258,7 +253,6 @@ func (r *Review) Model() (m *model.Review) {
 	return
 }
 
-//
 // CopyRequest REST resource.
 type CopyRequest struct {
 	SourceReview       uint   `json:"sourceReview" binding:"required"`

@@ -2,7 +2,6 @@ package addon
 
 import pathlib "path"
 
-//
 // Bucket API.
 type Bucket struct {
 	// hub API client.
@@ -11,7 +10,6 @@ type Bucket struct {
 	path string
 }
 
-//
 // Get reads from the bucket.
 // The source (path) is relative to the bucket root.
 func (h *Bucket) Get(source, destination string) (err error) {
@@ -19,7 +17,6 @@ func (h *Bucket) Get(source, destination string) (err error) {
 	return
 }
 
-//
 // Put writes to the bucket.
 // The destination (path) is relative to the bucket root.
 func (h *Bucket) Put(source, destination string) (err error) {
@@ -27,7 +24,6 @@ func (h *Bucket) Put(source, destination string) (err error) {
 	return
 }
 
-//
 // Delete deletes content at the specified path.
 // The path is relative to the bucket root.
 func (h *Bucket) Delete(path string) (err error) {

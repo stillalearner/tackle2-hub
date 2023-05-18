@@ -9,7 +9,6 @@ import (
 	"gorm.io/gorm"
 )
 
-//
 // Migrate the hub by applying all necessary Migrations.
 func Migrate(migrations []Migration) (err error) {
 	var db *gorm.DB
@@ -100,7 +99,6 @@ func Migrate(migrations []Migration) (err error) {
 	return
 }
 
-//
 // Set the version record.
 func setVersion(db *gorm.DB, version int) (err error) {
 	setting := &model.Setting{Key: VersionKey}
@@ -115,7 +113,6 @@ func setVersion(db *gorm.DB, version int) (err error) {
 	return
 }
 
-//
 // AutoMigrate the database.
 func autoMigrate(db *gorm.DB, models []interface{}) (err error) {
 	db, err = database.Open(false)

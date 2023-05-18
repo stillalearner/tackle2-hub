@@ -13,7 +13,6 @@ import (
 	"strings"
 )
 
-//
 // Routes
 const (
 	AnalysesRoot               = "/analyses"
@@ -30,13 +29,11 @@ const (
 	AppAnalysisIssuesRoot = AppAnalysisRoot + "/issues"
 )
 
-//
 // AnalysisHandler handles analysis resource routes.
 type AnalysisHandler struct {
 	BaseHandler
 }
 
-//
 // AddRoutes adds routes.
 func (h AnalysisHandler) AddRoutes(e *gin.Engine) {
 	routeGroup := e.Group("/")
@@ -767,7 +764,6 @@ func (h AnalysisHandler) DepComposites(ctx *gin.Context) {
 	h.Respond(ctx, http.StatusOK, resources)
 }
 
-//
 // appIDs provides application IDs.
 // filter:
 // - application.(id|name)
@@ -813,7 +809,6 @@ func (h *AnalysisHandler) appIDs(ctx *gin.Context, f *qf.Filter) (q *gorm.DB) {
 	return
 }
 
-//
 // analysisIDs provides analysis IDs.
 func (h *AnalysisHandler) analysisIDs(ctx *gin.Context, f *qf.Filter) (q *gorm.DB) {
 	q = h.DB(ctx)
@@ -824,7 +819,6 @@ func (h *AnalysisHandler) analysisIDs(ctx *gin.Context, f *qf.Filter) (q *gorm.D
 	return
 }
 
-//
 // rulesetIDs provides ruleSet IDs.
 // filter:
 //   - tech.source
@@ -856,7 +850,6 @@ func (h *AnalysisHandler) rulesetIDs(ctx *gin.Context, f *qf.Filter) (q *gorm.DB
 	return
 }
 
-//
 // Analysis (Analysis) REST resource.
 type Analysis struct {
 	Resource     `yaml:",inline"`
@@ -864,7 +857,6 @@ type Analysis struct {
 	Dependencies []AnalysisDependency `json:"dependencies"`
 }
 
-//
 // With updates the resource with the model.
 func (r *Analysis) With(m *model.Analysis) {
 	r.Resource.With(&m.Model)
@@ -886,7 +878,6 @@ func (r *Analysis) With(m *model.Analysis) {
 	}
 }
 
-//
 // Model builds a model.
 func (r *Analysis) Model() (m *model.Analysis) {
 	m = &model.Analysis{}
@@ -907,7 +898,6 @@ func (r *Analysis) Model() (m *model.Analysis) {
 	return
 }
 
-//
 // AnalysisRuleSet REST resource.
 type AnalysisRuleSet struct {
 	Resource     `yaml:",inline"`
@@ -917,7 +907,6 @@ type AnalysisRuleSet struct {
 	Issues       []AnalysisIssue      `json:"issues"`
 }
 
-//
 // With updates the resource with the model.
 func (r *AnalysisRuleSet) With(m *model.AnalysisRuleSet) {
 	r.Resource.With(&m.Model)
@@ -941,7 +930,6 @@ func (r *AnalysisRuleSet) With(m *model.AnalysisRuleSet) {
 	}
 }
 
-//
 // Model builds a model.
 func (r *AnalysisRuleSet) Model() (m *model.AnalysisRuleSet) {
 	m = &model.AnalysisRuleSet{}
@@ -964,7 +952,6 @@ func (r *AnalysisRuleSet) Model() (m *model.AnalysisRuleSet) {
 	return
 }
 
-//
 // AnalysisIssue REST resource.
 type AnalysisIssue struct {
 	Resource    `yaml:",inline"`
@@ -980,7 +967,6 @@ type AnalysisIssue struct {
 	Application uint               `json:"application" binding:"-"`
 }
 
-//
 // With updates the resource with the model.
 func (r *AnalysisIssue) With(m *model.AnalysisIssue) {
 	r.Resource.With(&m.Model)
@@ -1008,7 +994,6 @@ func (r *AnalysisIssue) With(m *model.AnalysisIssue) {
 	r.Effort = m.Effort
 }
 
-//
 // Model builds a model.
 func (r *AnalysisIssue) Model() (m *model.AnalysisIssue) {
 	m = &model.AnalysisIssue{}
@@ -1030,7 +1015,6 @@ func (r *AnalysisIssue) Model() (m *model.AnalysisIssue) {
 	return
 }
 
-//
 // AnalysisDependency REST resource.
 type AnalysisDependency struct {
 	Resource `yaml:",inline"`
@@ -1041,7 +1025,6 @@ type AnalysisDependency struct {
 	SHA      string `json:"sha,omitempty" yaml:",omitempty"`
 }
 
-//
 // With updates the resource with the model.
 func (r *AnalysisDependency) With(m *model.AnalysisDependency) {
 	r.Resource.With(&m.Model)
@@ -1052,7 +1035,6 @@ func (r *AnalysisDependency) With(m *model.AnalysisDependency) {
 	r.SHA = m.SHA
 }
 
-//
 // Model builds a model.
 func (r *AnalysisDependency) Model() (m *model.AnalysisDependency) {
 	m = &model.AnalysisDependency{}
@@ -1064,7 +1046,6 @@ func (r *AnalysisDependency) Model() (m *model.AnalysisDependency) {
 	return
 }
 
-//
 // AnalysisIncident REST resource.
 type AnalysisIncident struct {
 	Resource `yaml:",inline"`
@@ -1073,7 +1054,6 @@ type AnalysisIncident struct {
 	Facts    FactMap `json:"facts"`
 }
 
-//
 // With updates the resource with the model.
 func (r *AnalysisIncident) With(m *model.AnalysisIncident) {
 	r.Resource.With(&m.Model)
@@ -1084,7 +1064,6 @@ func (r *AnalysisIncident) With(m *model.AnalysisIncident) {
 	}
 }
 
-//
 // Model builds a model.
 func (r *AnalysisIncident) Model() (m *model.AnalysisIncident) {
 	m = &model.AnalysisIncident{}
@@ -1094,7 +1073,6 @@ func (r *AnalysisIncident) Model() (m *model.AnalysisIncident) {
 	return
 }
 
-//
 // AnalysisTechnology REST resource.
 type AnalysisTechnology struct {
 	Resource `yaml:",inline"`
@@ -1103,7 +1081,6 @@ type AnalysisTechnology struct {
 	Source   bool   `json:"source,omitempty" yaml:",omitempty"`
 }
 
-//
 // With updates the resource with the model.
 func (r *AnalysisTechnology) With(m *model.AnalysisTechnology) {
 	r.Resource.With(&m.Model)
@@ -1112,7 +1089,6 @@ func (r *AnalysisTechnology) With(m *model.AnalysisTechnology) {
 	r.Source = m.Source
 }
 
-//
 // key returns a unique key.
 func (r *AnalysisTechnology) key() string {
 	return fmt.Sprintf(
@@ -1122,7 +1098,6 @@ func (r *AnalysisTechnology) key() string {
 		r.Source)
 }
 
-//
 // Model builds a model.
 func (r *AnalysisTechnology) Model() (m *model.AnalysisTechnology) {
 	m = &model.AnalysisTechnology{}
@@ -1132,14 +1107,12 @@ func (r *AnalysisTechnology) Model() (m *model.AnalysisTechnology) {
 	return
 }
 
-//
 // AnalysisLink analysis report link.
 type AnalysisLink struct {
 	URL   string `json:"url"`
 	Title string `json:"title,omitempty" yaml:",omitempty"`
 }
 
-//
 // IssueComposite composite REST resource.
 type IssueComposite struct {
 	tech         map[string]AnalysisTechnology
@@ -1153,7 +1126,6 @@ type IssueComposite struct {
 	Affected     int                  `json:"affected"`
 }
 
-//
 // DepComposite composite REST resource.
 type DepComposite struct {
 	Name     string `json:"name"`
@@ -1163,6 +1135,5 @@ type DepComposite struct {
 	Affected int    `json:"affected"`
 }
 
-//
 // FactMap map.
 type FactMap map[string]interface{}

@@ -5,7 +5,6 @@ import (
 	"strings"
 )
 
-//
 // Analysis report.
 type Analysis struct {
 	Model
@@ -15,7 +14,6 @@ type Analysis struct {
 	Application   *Application
 }
 
-//
 // BeforeCreate assign ruleId.
 func (m *Analysis) BeforeCreate(db *gorm.DB) (err error) {
 	for i := range m.RuleSets {
@@ -29,7 +27,6 @@ func (m *Analysis) BeforeCreate(db *gorm.DB) (err error) {
 	return
 }
 
-//
 // AnalysisRuleSet report ruleset.
 type AnalysisRuleSet struct {
 	Model
@@ -41,7 +38,6 @@ type AnalysisRuleSet struct {
 	Analysis     *Analysis
 }
 
-//
 // AnalysisTechnology report technology ref.
 type AnalysisTechnology struct {
 	Model
@@ -52,7 +48,6 @@ type AnalysisTechnology struct {
 	RuleSet   *AnalysisRuleSet
 }
 
-//
 // AnalysisDependency report dependency.
 type AnalysisDependency struct {
 	Model
@@ -65,7 +60,6 @@ type AnalysisDependency struct {
 	Analysis   *Analysis
 }
 
-//
 // Key used for comparison.
 func (m *AnalysisDependency) Key() (s string) {
 	s = strings.Join(
@@ -79,7 +73,6 @@ func (m *AnalysisDependency) Key() (s string) {
 	return
 }
 
-//
 // AnalysisIssue report issue (violation).
 type AnalysisIssue struct {
 	Model
@@ -96,7 +89,6 @@ type AnalysisIssue struct {
 	RuleSet     *AnalysisRuleSet
 }
 
-//
 // AnalysisIncident report incident.
 type AnalysisIncident struct {
 	Model
@@ -107,7 +99,6 @@ type AnalysisIncident struct {
 	Issue   *AnalysisIssue
 }
 
-//
 // AnalysisLink report link.
 type AnalysisLink struct {
 	URL   string `json:"url"`
